@@ -1,0 +1,9 @@
+.container_istruzioni {
+    display: flex;
+    align-items: center;
+}
+
+p {
+    font-size: 18px;
+    margin-bottom: 20px;    
+}

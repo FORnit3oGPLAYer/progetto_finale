@@ -7,5 +7,21 @@
     <body>
         <h1>ISTRUZIONE PER ARBITRI ROOKIE</h1>
         <p>Benvenuto alla sezione 1 dell'istruzione per arbitri rookie!</p>
+        <a href="{{ url_for('home_page') }}">Torna alla homepage</a>
+        <div class="container_istruzioni">
+            <h2>tiro da 1 un punto</h2>
+            <img src="{{ url_for('static', filename='img/1_Punto.png') }}" alt="Tiro da 1 punto">
+            <p>Il tiro da 1 punto viene assegnato quando un giocatore subisce un fallo durante un tentativo di tiro da 3 punti e il tiro non va a segno.    </p>
+        </div>
+        <div  class="container_istruzioni"> 
+            <h2>tiro da 2 punti</h2>
+            <img src="{{ url_for('static', filename='img/2_Punti.png') }}" alt="Tiro da 2 punti">
+            <p>Il tiro da 2 punti viene assegnato quando un giocatore subisce un fallo durante un tentativo di tiro da 3 punti e il tiro va a segno.    </p>
+        </div>
+        <div  class="container_istruzioni"> 
+            <h2>tiro da 3 punti</h2>                        
+            <img src="{{ url_for('static', filename='img/3_Punti.png') }}" alt="Tiro da 3 punti">
+            <p>Il tiro da 3 punti viene assegnato quando un giocatore subisce un fallo durante un tentativo di tiro da 3 punti e il tiro va a segno.    </p>
+        </div>
     </body>
 </html>
