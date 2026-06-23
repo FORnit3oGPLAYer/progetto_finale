@@ -21,7 +21,46 @@
         <div  class="container_istruzioni"> 
             <h2>tiro da 3 punti</h2>                        
             <img src="{{ url_for('static', filename='img/3_Punti.png') }}" alt="Tiro da 3 punti">
-            <p>Il tiro da 3 punti viene assegnato quando un giocatore subisce un fallo durante un tentativo di tiro da 3 punti e il tiro va a segno.    </p>
+            <p>Il tiro da 3 punti viene assegnato quando un giocatore fa un tentativo di tiro da 3 punti.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>tiro da 3 punti realizzato</h2>
+            <img src="{{ url_for('static', filename='img/3_Punti_Realizzato.png') }}" alt="Tiro da 3 punti">
+            <p>Il tiro da 3 punti viene assegnato quando un giocatore fa un tentativo di tiro da 3 punti e il tiro va a segno.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>annullamento del punto</h2>
+            <img src="{{ url_for('static', filename='img/Annullamento_punteggio.png') }}" alt="Tiro da 3 punti">
+            <p>L'annulamento del punto avviene quando viene fischiata un'infrazione prima di un tentativo di tiro e il tiro va a segno, anche se non valido.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>Conferma dell'attività dell'arbitro</h2>
+            <p>Per confermare l'attività dell'arbitro, è necessario che all'inizio della partita venga effettuata una conferma da parte dell'arbitro tramite un fischio prima della contesa iniziale.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>fallo in attacco</h2>
+            <img src="{{ url_for('static', filename='img/Fallo_blocco.png') }}" alt="Fallo in attacco">
+            <p>Un fallo in attacco avviene quando un giocatore subisce un fallodurante un azione difensiva.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>Passi</h2>
+            <img src="{{ url_for('static', filename='img/Fallo_camminata.png') }}" alt="Passi">
+            <p>I passi vengono fischiati quando un giocatore fa più di 2 passi con la palla in mano.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>Tecnico</h2>
+            <img src="{{ url_for('static', filename='img/Fallo_tecnico.png') }}" alt="Fallo tecnico">
+            <p>Un fallo tecnico avviene quando un giocatore commette una infrazione regolamentare che non è considerata un fallo fisico ma irrispettoso nei confronti dei principi sportivi.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>Sostituzione</h2>
+            <img src="{{ url_for('static', filename='img/Sostituzione.png') }}" alt="Sostituzione">
+            <p>La sostituzione dei giocatori avviene quando un giocatore viene rimpiazzato da un altro giocatore durante la partita.    </p>
+        </div>
+        <div class="container_istruzioni">
+            <h2>Timeout</h2>
+            <img src="{{ url_for('static', filename='img/Timeout.png') }}" alt="Timeout">
+            <p>Il timeout viene assegnato dall'arbitro per interrompere la partita di un minuto.    </p>
         </div>
     </body>
 </html>
