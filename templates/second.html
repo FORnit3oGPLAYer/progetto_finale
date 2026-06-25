@@ -1,12 +1,186 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>ISTRUZIONE PER ARBITRI ROOKIE</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/second.css') }}">
-    </head>
-    <body>
-        <h1>ISTRUZIONE PER ARBITRI ROOKIE</h1>
-        <p>Benvenuto alla sezione 2 dell'istruzione per arbitri rookie!</p>
-        <a href="{{ url_for('home_page') }}">Torna alla homepage</a>
-    </body>
+<head>
+    <title>Quiz arbitri rookie</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/second.css') }}">
+</head>
+<body>
+    <div class="quiz-page">
+        <h1>Quiz arbitri rookie</h1>
+
+        <div id="quiz-card" class="quiz-card">
+            <img id="quiz-image" src="" alt="Immagine quiz">
+            <div id="options" class="quiz-options"></div>
+            <p id="feedback" class="feedback"></p>
+            <button id="next-btn" class="next-btn">Avanti</button>
+        </div>
+
+        <div id="result-screen" class="result-screen hidden">
+            <h2>Quiz terminato</h2>
+            <p id="result-text"></p>
+            <p id="final-message"></p>
+            <button id="restart-btn" class="restart-btn">Riprova</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/01.png') }}",
+                correct: "Tiro da 1 punto",
+                options: ["Fallo tecnico", "Tiro da 1 punto", "Fallo in attacco", "Timeout"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/02.png') }}",
+                correct: "Tiro da 2 punti",
+                options: ["Fuori campo", "Passi", "Fallo in attacco", "Tiro da 2 punti"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/03.png') }}",
+                correct: "Tiro da 3 punti",
+                options: ["Fallo in attacco", "Tiro da 3 punti", "Sostituzione", "Passi"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/04.png') }}",
+                correct: "Tiro da 3 punti realizzato",
+                options: ["Tiro da 3 punti realizzato", "Tiro da 2 punti", "Fallo tecnico", "Timeout"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/05.png') }}",
+                correct: "Annulamento del punto",
+                options: ["Sostituzione", "Fallo tecnico", "Annulamento del punto", "Timeout"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/06.png') }}",
+                correct: "conferma dell'attività dell'arbitro",
+                options: ["Timeout", "Passi", "Fallo in attacco", "conferma dell'attività dell'arbitro"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/07.png') }}",
+                correct: "Fallo in attacco",
+                options: ["Tiro da 2 punti", "Fallo in attacco", "Annulamento del punto", "Sostituzione"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/08.png') }}",
+                correct: "Passi",
+                options: ["Annulamento del punto", "Passi", "Tiro da 1 punto", "Timeout"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/09.png') }}",
+                correct: "Fallo tecnico",
+                options: ["Tiro da 1 punto", "Tiro da 3 punti", "Sostituzione", "Fallo tecnico"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/10.png') }}",
+                correct: "Sostituzione",
+                options: ["Fuori campo", "Timeout", "Sostituzione", "Fallo in attacco"]
+            },
+            {
+                image: "{{ url_for('static', filename='img/immagini per quiz/11.png') }}",
+                correct: "Timeout",
+                options: ["Fallo tecnico", "Tiro da 1 punto", "Annulamento del punto", "Timeout"]
+            }
+        ];
+
+        const quizImage = document.getElementById("quiz-image");
+        const optionsEl = document.getElementById("options");
+        const feedbackEl = document.getElementById("feedback");
+        const nextBtn = document.getElementById("next-btn");
+        const resultScreen = document.getElementById("result-screen");
+        const resultText = document.getElementById("result-text");
+        const finalMessage = document.getElementById("final-message");
+        const restartBtn = document.getElementById("restart-btn");
+
+        let selectedQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let answered = false;
+
+        function shuffleArray(array) {
+            return array
+                .map(value => ({ value, sort: Math.random() }))
+                .sort((a, b) => a.sort - b.sort)
+                .map(({ value }) => value);
+        }
+
+        function startQuiz() {
+            const shuffled = shuffleArray(questions);
+            selectedQuestions = shuffled.slice(0, 10);
+            currentIndex = 0;
+            score = 0;
+            answered = false;
+            resultScreen.classList.add("hidden");
+            document.getElementById("quiz-card").classList.remove("hidden");
+            nextBtn.textContent = "Avanti";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = selectedQuestions[currentIndex];
+            quizImage.src = question.image;
+            quizImage.alt = `Quiz ${currentIndex + 1}`;
+            feedbackEl.textContent = "";
+            optionsEl.innerHTML = "";
+            answered = false;
+
+            const shuffledOptions = shuffleArray(question.options);
+            shuffledOptions.forEach(option => {
+                const btn = document.createElement("button");
+                btn.textContent = option;
+                btn.className = "option-btn";
+                btn.addEventListener("click", () => selectAnswer(option));
+                optionsEl.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(answer) {
+            if (answered) return;
+            answered = true;
+
+            const question = selectedQuestions[currentIndex];
+            const buttons = document.querySelectorAll(".option-btn");
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (answer === question.correct) {
+                score += 1;
+                feedbackEl.textContent = "Bravo! È giusto!";
+                feedbackEl.className = "feedback correct";
+            } else {
+                feedbackEl.textContent = `Sbagliato! La risposta giusta è: ${question.correct}`;
+                feedbackEl.className = "feedback wrong";
+            }
+
+            if (currentIndex === selectedQuestions.length - 1) {
+                nextBtn.textContent = "Vedi risultato";
+            }
+        }
+
+        function nextQuestion() {
+            if (!answered) return;
+            currentIndex += 1;
+            if (currentIndex < selectedQuestions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            document.getElementById("quiz-card").classList.add("hidden");
+            resultScreen.classList.remove("hidden");
+            resultText.textContent = `Hai risposto correttamente a ${score}/10 domande.`;
+
+            if (score >= 9) {
+                finalMessage.textContent = "Bravo, hai superato il test!";
+            } else {
+                finalMessage.textContent = "Riprova, la prossima volta sarai più fortunato...";
+            }
+        }
+
+        nextBtn.addEventListener("click", nextQuestion);
+        restartBtn.addEventListener("click", startQuiz);
+
+        startQuiz();
+    </script>
+</body>
 </html>
