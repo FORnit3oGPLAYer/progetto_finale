@@ -1,4 +1,75 @@
-body {
-    background-color: blanchedalmond;
-    color: red;
+/* Minimal, centrato e coerente con le altre pagine */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root{
+  --bg:#ffffff;     
+  --accent:#ce8d24; 
+  --text:#0b1220;
+  --muted:#555;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  padding:28px;
+}
+
+
+body > h1,
+body > p,
+body > a,
+.hero-img{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
+  text-align:center;
+}
+
+
+h1{
+  font-size:2rem;
+  margin:10px 0 8px;
+  color:var(--accent);
+  font-weight:600;
+}
+
+
+p{color:var#000000;max-width:800px;margin:0 auto 16px;font-size:1rem}
+
+
+a{
+  display:inline-block;
+  margin:8px 6px;
+  padding:10px 14px;
+  border-radius:8px;
+  text-decoration:none;
+  color:#fff;
+  background:var(--accent);
+}
+
+
+.hero-img{
+  margin-top:22px;
+  width:100%;
+  max-width:640px;
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.14);
+  object-fit:cover;
+}
+
+
+@media (max-width:520px){
+  h1{font-size:1.4rem}
+  .hero-img{
+  margin-top:22px;
+  width:100%;
+  max-width:640px;
+  border-radius:12px;
+  box-shadow:0 12px 30px rgba(0,0,0,0.14);
+  object-fit:cover;
+  border:2px solid #000;
+}
 }

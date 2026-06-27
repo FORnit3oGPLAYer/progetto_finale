@@ -7,15 +7,12 @@ def home_page():
 
 @app.route('/sezione1')
 def sezione1():
-    return render_template('first.html')
+    return render_template('instruction.html')
 
 @app.route('/sezione2')
 def sezione2():
-    return render_template('second.html')
+    return render_template('quiz.html')
    
-
-
-
 
 
 app.run(debug=True)

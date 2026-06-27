@@ -2,12 +2,12 @@
 <html>
 <head>
     <title>Quiz arbitri rookie</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/second.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quiz.css') }}">
 </head>
 <body>
     <div class="quiz-page">
         <h1>Quiz arbitri rookie</h1>
-
+        <a href="{{ url_for('home_page') }}">Torna alla homepage</a>
         <div id="quiz-card" class="quiz-card">
             <img id="quiz-image" src="" alt="Immagine quiz">
             <div id="options" class="quiz-options"></div>

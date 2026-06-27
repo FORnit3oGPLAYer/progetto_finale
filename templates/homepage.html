@@ -8,6 +8,7 @@
         {% block content %}
         <h1>Istruzione per arbitri rookie</h1>
         <p>Benvenuto nella nostra istruzione!</p>
+        <img src="{{ url_for('static', filename='img/immagini per quiz/basket.jpg') }}" alt="basket" class="hero-img">
         <a href="{{ url_for('sezione1') }}">Vai all'istruzione!</a>
         <a href="{{ url_for('sezione2') }}">Vai al quiz!</a>
         {% endblock %}
